@@ -1,38 +1,125 @@
-.App {
+html,
+body {
+  height: 100%;
+}
+
+.content {
+  background: #000000;
+}
+.header {
+  width: 100%;
+}
+.productPage {
+  padding-top: 7%;
+  height: 90vh;
+  color: #fff;
+}
+
+.footer {
+  height: 4vh;
+}
+
+.login-form {
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.row {
+  margin-left: 50px !important;
+  margin-right: 50px !important;
+}
+.card {
+  margin: 25px !important;
+}
+
+.col-2 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.card-img-top {
+  width: 100%;
+}
+
+.jumbotron {
+  background-image: url("./images/hero_image.png");
+  background-size: cover;
+}
+/* Place text in the middle of the image */
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.payment_icons img {
+  margin-left: 2px;
+  width: 32px;
+  height: 32px;
+}
+
+.loadMoreContainer {
+  height: 200px;
+  position: relative;
+  border: 3px solid green;
+}
+
+.loadMore {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #e50914;
   text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 19px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sub-nav-item {
+  background-color: #000000;
+  color: white;
+  width: 100%;
+}
+.reg-header {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.registration-form {
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.content-reg {
+  padding-left: inherit;
+  padding-right: inherit;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.col-4 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.active-step {
+  background-color: red;
+  color: white;
+}
+.reg-step-visible {
+  display: none;
+}
+.hero-height {
+  min-height: 30vh;
+}
+.hero-title {
+  margin-top: 5%;
 }
