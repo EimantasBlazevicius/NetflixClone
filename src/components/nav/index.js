@@ -1,11 +1,12 @@
 import image from "./images/F.png";
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
-import UserContext from "../../context/userContext";
+import { useSelector,useDispatch } from 'react-redux';
 
-function Nav({ onSignOut }) {
-  const { isLoggedIn } = useContext(UserContext);
+function Nav() {
+  const isLoggedIn = useSelector(store => store.isLoggedIn)
+  const dispatch = useDispatch()
   return (
     <nav>
       <Link to="/" className="navbar-brand">
@@ -19,7 +20,7 @@ function Nav({ onSignOut }) {
       ) : (
         <button
           className="btn btn-danger float-right m-2 nav-item"
-          onClick={onSignOut}
+          onClick={dispatch({type:"SIGN_OUT"})}
         >
           Sign Out
         </button>

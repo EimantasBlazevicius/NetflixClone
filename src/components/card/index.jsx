@@ -1,15 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import "../../App.css";
 import loader from "./images/loading.gif";
-import UserContext from "../../context/userContext";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 function Card({ error, isLoaded, items }) {
-  const { fav, setFav } = useContext(UserContext);
+  const fav = useSelector(store => store.fav)
+  const dispatch = useDispatch()
+
   function toggleFavorite(id) {
     fav.includes(id)
-      ? setFav(fav.filter((item) => item !== id))
-      : setFav(fav.concat(id));
+      ? dispatch({type:'UPDATE_FAV',payload:{
+        appendedFav: fav.filter((item) => item !== id)
+      }})
+      : dispatch({type:'UPDATE_FAV',payload:{
+        appendedFav: [...fav,id]
+      }})
   }
 
   if (error) {

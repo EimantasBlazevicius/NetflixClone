@@ -1,17 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import ModalVideo from "react-modal-video";
-import UserContext from "../../context/userContext";
+import { useDispatch, useSelector } from 'react-redux';
 
 function ProductPage({ match }) {
+
+  const token = useSelector(store => store.token);
+  const fav = useSelector(store => store.fav);
+  const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState([]);
   const [isOpen, setOpen] = useState(false);
-  const { token, fav, setFav } = useContext(UserContext);
   function toggleFavorite(id) {
     fav.includes(id)
-      ? setFav(fav.filter((item) => item !== id))
-      : setFav(fav.concat(id));
+      ? dispatch({type:'UPDATE_FAV',payload:{
+        appendedFav: fav.filter((item) => item !== id)
+      }})
+      : dispatch({type:'UPDATE_FAV',payload:{
+        appendedFav: [...fav,id]
+      }})
   }
 
   const productId = match.params.id;

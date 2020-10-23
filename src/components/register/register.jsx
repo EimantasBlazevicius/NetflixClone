@@ -1,15 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./register.css";
 import CreateUser from "./components/createUser";
 import PickAPlan from "./components/pickAPlan";
 import Payment from "./components/payment";
 import axios from "axios";
 import { Route, Switch, useHistory } from "react-router-dom";
-import UserContext from "../../context/userContext";
+import { useDispatch } from 'react-redux';
 
 const Register = () => {
   const history = useHistory();
-  const { setToken } = useContext(UserContext);
+  const dispatch = useDispatch();
   // eslint-disable-next-line
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -58,7 +58,9 @@ const Register = () => {
         body
       );
       console.log(data);
-      setToken(data.token);
+      dispatch({type: "UPDATE_TOKEN",payload: {
+        token: data.token
+      }});
       history.replace("/");
     } catch (ex) {}
   }

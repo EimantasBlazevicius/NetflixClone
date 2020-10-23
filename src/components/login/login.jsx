@@ -1,11 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./login.css";
-import UserContext from "../../context/userContext";
+import { useSelector,useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
+import { axios } from 'axios';
 
 const Login = () => {
-  const { onLogin, token } = useContext(UserContext);
+  const history = useHistory()
+  const token = useSelector(store => store.token)
+  const dispatch = useDispatch()
   const [username, setUsermane] = useState("");
   const [password, setPassword] = useState("");
+
+  async function handleLogin(e, username, password) {
+    e.preventDefault();
+    const obj = { username, password };
+    try {
+      const { data } = await axios.post(
+        "https://academy-video-api.herokuapp.com/auth/login",
+        obj
+      );
+      
+      dispatch({type:"UPDATE_TOKEN",payload:{
+        token: data.token
+      }})
+      history.replace("/");
+    } catch (ex) {
+      dispatch({type:"UPDATE_TOKEN",payload:{
+        token: "false"
+      }})
+    }
+  }
 
   const authOk = (token) => {
     if (token === "false") {
@@ -63,7 +87,7 @@ const Login = () => {
                   {authOk(token)}
                   <button
                     type="button"
-                    onClick={(e) => onLogin(e, username, password)}
+                    onClick={(e) => handleLogin(e,username,password)}
                     className="btn btn-danger m-2"
                   >
                     Sign In

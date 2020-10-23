@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Hero from "../hero/index";
 import Card from "../card/index";
-import UserContext from "../../context/userContext";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const { isLoggedIn, token, apiEndpoint } = useContext(UserContext);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const isLoggedIn = useSelector(store => store.isLoggedIn)
+  const token = useSelector(store => store.token)
+  const apiEndpoint = useSelector(store => store.apiEndpoint)
 
   useEffect(() => {
-    fetch(apiEndpoint(token), {
+    fetch(apiEndpoint, {
       headers: {
         authorization: token,
       },
