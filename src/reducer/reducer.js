@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default function reducer(initialState={
   token: "",
   fav:[],
@@ -7,18 +9,15 @@ export default function reducer(initialState={
 
     switch(action.type){
         case "UPDATE_TOKEN":
-            const newToken = action.payload.token
-            const newApiEndpoint = (newToken) => {
-              return newToken === ""
-                ? "https://academy-video-api.herokuapp.com/content/free-items"
-                : "https://academy-video-api.herokuapp.com/content/items"
-            }
-            return {...initialState, token: newToken, apiEndpoint:newApiEndpoint()}
+          console.log(action.payload.token)
+          return {...initialState, token: action.payload.token, apiEndpoint:"https://academy-video-api.herokuapp.com/content/items"}
         case "UPDATE_FAV":
-            const newFav = action.payload.appendedFav
-            return {...initialState,fav:newFav}
+          const newFav = action.payload.appendedFav
+          return {...initialState,fav:newFav}
         case "SIGN_OUT":
-            return {...initialState,token:""}
+          return {...initialState,token:""}
+        case "REGISTER_TOKEN":
+          return {...initialState,token:action.payload.token,apiEndpoint:"https://academy-video-api.herokuapp.com/content/items"}
         default:
           return {...initialState}
     }

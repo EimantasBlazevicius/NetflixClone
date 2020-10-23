@@ -57,8 +57,7 @@ const Register = () => {
         "https://academy-video-api.herokuapp.com/auth/signup",
         body
       );
-      console.log(data);
-      dispatch({type: "UPDATE_TOKEN",payload: {
+      dispatch({type: "REGISTER_TOKEN",payload: {
         token: data.token
       }});
       history.replace("/");

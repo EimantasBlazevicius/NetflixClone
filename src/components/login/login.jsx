@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./login.css";
 import { useSelector,useDispatch } from "react-redux";
-import { useHistory } from 'react-router-dom';
 import { axios } from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const history = useHistory()
@@ -11,23 +11,21 @@ const Login = () => {
   const [username, setUsermane] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleLogin(e, username, password) {
-    e.preventDefault();
-    const obj = { username, password };
+  async function handleLogin(e, user, pass) {
+    e.preventDefault()
+    const body = { username: user, password: pass};
     try {
-      const { data } = await axios.post(
+      const response = await axios.post(
         "https://academy-video-api.herokuapp.com/auth/login",
-        obj
+        body
       );
-      
-      dispatch({type:"UPDATE_TOKEN",payload:{
-        token: data.token
-      }})
+      dispatch({type: "LOGIN",payload: {
+        token: response.data.token
+      }});
       history.replace("/");
+      
     } catch (ex) {
-      dispatch({type:"UPDATE_TOKEN",payload:{
-        token: "false"
-      }})
+      console.log(ex)
     }
   }
 

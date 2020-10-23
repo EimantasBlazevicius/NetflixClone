@@ -29,7 +29,9 @@ const HomePage = () => {
         }
       );
   }, [token, apiEndpoint]);
+  
   return (
+    
     <div>
       {isLoggedIn ? null : <Hero />}
       <hr />
