@@ -11,7 +11,7 @@ import Footer from "./components/footer/index";
 import Register from "./components/register/register";
 import ProductPage from "./components/productPage/index";
 import UserContext from "./context/userContext";
-
+//new setup for Redux
 function App() {
   let history = useHistory();
   const [token, setToken] = useState("");
