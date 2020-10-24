@@ -5,7 +5,7 @@ import "../../App.css";
 import { useSelector,useDispatch } from 'react-redux';
 
 function Nav() {
-  const isLoggedIn = useSelector(store => store.isLoggedIn)
+  const token = useSelector(store => store.token)
   const dispatch = useDispatch()
   return (
     <nav>
@@ -13,14 +13,14 @@ function Nav() {
         <img src={image} width="20" height="30" alt="" className="m-2" />
       </Link>
 
-      {!isLoggedIn ? (
+      {token==="" ? (
         <Link to="/login" className="nav-item float-right m-2">
           <button className="btn btn-danger">Sign In</button>
         </Link>
       ) : (
         <button
           className="btn btn-danger float-right m-2 nav-item"
-          onClick={dispatch({type:"SIGN_OUT"})}
+          onClick={() => dispatch({type:"SIGN_OUT"})}
         >
           Sign Out
         </button>

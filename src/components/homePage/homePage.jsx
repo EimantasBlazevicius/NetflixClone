@@ -7,7 +7,6 @@ const HomePage = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const isLoggedIn = useSelector(store => store.isLoggedIn)
   const token = useSelector(store => store.token)
   const apiEndpoint = useSelector(store => store.apiEndpoint)
 
@@ -29,11 +28,10 @@ const HomePage = () => {
         }
       );
   }, [token, apiEndpoint]);
-  
   return (
     
     <div>
-      {isLoggedIn ? null : <Hero />}
+      {token !== "" ? null : <Hero />}
       <hr />
       <div className="body">
         <Card

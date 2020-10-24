@@ -12,6 +12,7 @@ const Register = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line
   const [email, setEmail] = useState("");
+  // eslint-disable-next-line
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   // eslint-disable-next-line

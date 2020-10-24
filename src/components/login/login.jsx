@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
 import { useSelector,useDispatch } from "react-redux";
-import { axios } from 'axios';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const Login = () => {
@@ -15,15 +15,14 @@ const Login = () => {
     e.preventDefault()
     const body = { username: user, password: pass};
     try {
-      const response = await axios.post(
+      const {data} = await axios.post(
         "https://academy-video-api.herokuapp.com/auth/login",
         body
       );
-      dispatch({type: "LOGIN",payload: {
-        token: response.data.token
+      dispatch({type: "UPDATE_TOKEN",payload: {
+        token: data.token
       }});
       history.replace("/");
-      
     } catch (ex) {
       console.log(ex)
     }
@@ -31,6 +30,7 @@ const Login = () => {
 
   const authOk = (token) => {
     if (token === "false") {
+
       return (
         <div className="alert alert-danger" role="alert">
           Check your username or password for Logging in!
